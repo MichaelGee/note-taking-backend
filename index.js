@@ -25,7 +25,7 @@ app.use('/me', require('./routes/user'))
 
 //Add logger to see all requests
 app.use((req, res, next) => {
-    console.log(`${req.method} ${res.path}`);
+    console.log(`${req.method} ${req.path}`);
     next();
 });
 
