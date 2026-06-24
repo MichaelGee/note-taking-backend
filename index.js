@@ -19,6 +19,7 @@ app.use(express.json());
 app.use('/auth', require('./routes/auth'))
 app.use('/notes', require('./routes/notes'))
 app.use('/reminders', require('./routes/reminders'))
+app.use('/me', require('./routes/user'))
 
 /*************************/
 

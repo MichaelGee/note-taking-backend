@@ -22,7 +22,7 @@ cron.schedule('* * * * *', async () => {
         from: 'MempryPal <onboarding@resend.dev>',
         to: reminder.user.email,
         subject: 'Reminder',
-        html: <p>{reminder.text}</p>,
+        html: "<p>{reminder.text}</p>",
       });
       // Mark as sent so it doesn't fire again
       await prisma.reminder.update({
