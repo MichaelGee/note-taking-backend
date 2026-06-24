@@ -22,11 +22,11 @@ cron.schedule('* * * * *', async () => {
         from: 'MempryPal <onboarding@resend.dev>',
         to: reminder.user.email,
         subject: 'Reminder',
-        html: "<p>{reminder.text}</p>",
+        html: `<p>${reminder.text}</p>`,
       });
       // Mark as sent so it doesn't fire again
       await prisma.reminder.update({
-        where: {id: remidner.id},
+        where: {id: reminder.id},
         data: {sent: true},
       })
       console.log(`Reminder sent to ${reminder.user.email}: ${reminder.text}`);

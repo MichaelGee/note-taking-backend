@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const resend = require('resend');
 const authenticate = require('../middleware/authenticate');
 const prisma = require('../prisma/client');
 
