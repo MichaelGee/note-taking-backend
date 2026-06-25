@@ -19,7 +19,7 @@ router.post('/', authenticate, async (req, res) => {
     if (!text || !scheduledAt) return res.status(400).json({ error: 'text and scheduledAt is required' })
     try {
         const reminder = await prisma.reminder.create({
-            data: { text, scheduledAt: new Date().toISOString(), userId: 1 }
+            data: { text, scheduledAt: new Date().toISOString(), userId: req.userId }
         })
         res.status(201).json({ reminder })
     } catch (error) {
