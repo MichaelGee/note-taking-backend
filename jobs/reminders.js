@@ -8,10 +8,6 @@ cron.schedule('* * * * *', async () => {
   const now = new Date();
   const inOneMin = new Date(now.getTime() + 60 * 1000);
 
-  console.log(
-    `Cron tick: checking reminders between ${now.toISOString()} and ${inOneMin.toISOString()}`,
-  );
-
   try {
     const due = await prisma.reminder.findMany({
       where: {
@@ -20,12 +16,7 @@ cron.schedule('* * * * *', async () => {
       },
       include: { user: true },
     });
-
-    console.log(`Found ${due.length} due reminders`);
-
     for (const reminder of due) {
-      console.log(`Sending reminder ${reminder.id} to ${reminder.user.email}`);
-
       await resend.emails.send({
         from: 'MemoryPal <onboarding@resend.dev>',
         to: reminder.user.email,
